@@ -84,6 +84,7 @@ def revcomp_DNA(dna, extended=False):
         complement = {'A': 'T', 'C': 'G', 'G': 'C', 'T': 'A', 'Y': 'R', 'R': 'Y', 'S': 'W', 'W': 'S', 'K': 'M', 'M': 'K', 'B': 'V', 'V': 'B', 'D': 'H', 'H': 'D', 'N': 'N' }
     else:
         complement = {'A':'T','C':'G','G':'C','T':'A','N':'N','X':'X'}
+    complement.update({',': ','})
     seq = dna.upper()
     return ''.join(complement[base] for base in reversed(seq))
         
