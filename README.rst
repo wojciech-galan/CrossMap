@@ -1,18 +1,16 @@
+Forked from https://github.com/liguowang/CrossMap.
 
-.. toctree::
-   :maxdepth: 2
-   
+I've fixed some problems with processing .vcf files:
+ - alt allele in multiallelic SNPs on reverse strand should be properly rev-complemented
+ - ref allele in multiallelic SNPs should be properly rev-complemented when source strand is '+' and dest one is '-'
 
-.. CrossMap documentation master file, created by
-   sphinx-quickstart on Thu Nov 06,  2018.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+First fix should work for other file formats also (but I didn't check...)
+Install::
 
-.. image:: _static/logo.png
-   :height: 150px
-   :width: 750 px
-   :scale: 50 %
-   :alt: alternate text
+    pip3 install git+https://github.com/wojciech-galan/CrossMap
+
+Original documentation below. Enjoy!
+
 
 What is CrossMap ?
 ====================
