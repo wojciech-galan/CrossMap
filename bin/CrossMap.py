@@ -645,6 +645,7 @@ def crossmap_vcf_file(mapping, infile, outfile, liftoverfile, refgenome):
                         
                 if a[1][3] == '-':
                     fields[4] = revcomp_DNA(fields[4], True)
+                    fields[3] = revcomp_DNA(fields[3], True)
                 
                 if fields[3] != fields[4]:
                     print('\t'.join(map(str, fields)), file=FILE_OUT)
