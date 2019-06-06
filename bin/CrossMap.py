@@ -478,7 +478,7 @@ def map_coordinates(mapping, q_chr, q_start, q_end, q_strand='+', print_match=Fa
 
     return matches
 
-def crossmap_vcf_file(mapping, infile, outfile, liftoverfile, refgenome):
+def crossmap_vcf_file(mapping, infile, outfile, liftoverfile, refgenome, discard_unmapped):
     '''
     Convert genome coordinates in VCF format.
     
@@ -625,24 +625,28 @@ def crossmap_vcf_file(mapping, infile, outfile, liftoverfile, refgenome):
                     if target_chr.startswith('chr'):
                         try:
                             fields[3] = refFasta.fetch(target_chr,target_start,target_end).upper()
-                        except:
-                             print(line, file=UNMAP)
+                        except KeyError:
+                            print(line, file=UNMAP)
+                            if discard_unmapped:continue
                     else:
                         try:
                             fields[3] = refFasta.fetch('chr'+target_chr,target_start,target_end).upper()
-                        except:
-                             print(line, file=UNMAP)
+                        except KeyError:
+                            print(line, file=UNMAP)
+                            if discard_unmapped: continue
                 else:
                     if target_chr.startswith('chr'):
                         try:
                             fields[3] = refFasta.fetch(target_chr.replace('chr',''),target_start,target_end).upper()
-                        except:
-                             print(line, file=UNMAP)
+                        except KeyError:
+                            print(line, file=UNMAP)
+                            if discard_unmapped: continue
                     else:
                         try:
                             fields[3] = refFasta.fetch(target_chr,target_start,target_end).upper()
-                        except:
-                             print(line, file=UNMAP)
+                        except KeyError:
+                            print(line, file=UNMAP)
+                            if discard_unmapped: continue
 
                 if a[1][3] == '-':
                     fields[4] = revcomp_DNA(fields[4], True)
@@ -1986,9 +1990,10 @@ Example
             parser.add_argument('input_file', type=str)
             parser.add_argument('ref_genome', type=str)
             parser.add_argument('output_file', type=str)
+            parser.add_argument('--discard_unmapped', action='store_true', help="whether to discard lines with chromosomes unmapped between input vcf and ref genome")
             args = parser.parse_args()
             (mapTree,targetChromSizes, sourceChromSizes) = read_chain_file(args.chain_file)
-            crossmap_vcf_file(mapping=mapTree, infile=args.input_file, outfile=args.output_file, liftoverfile=args.chain_file, refgenome=args.ref_genome)
+            crossmap_vcf_file(mapping=mapTree, infile=args.input_file, outfile=args.output_file, liftoverfile=args.chain_file, refgenome=args.ref_genome, discard_unmapped=args.discard_unmapped)
         else:
             general_help()
             sys.exit(0)

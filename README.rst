@@ -4,6 +4,8 @@ I've fixed some problems with processing .vcf files:
  - alt allele in multiallelic SNPs on reverse strand should be properly rev-complemented
  - ref allele in multiallelic SNPs should be properly rev-complemented when source strand is '+' and dest one is '-'
 
+and added option to discard lines containing unmapped chromosomes when processing .vcf files.
+
 First fix should work for other file formats also (but I didn't check...)
 Install::
 
