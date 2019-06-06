@@ -1988,7 +1988,7 @@ Example
             parser.add_argument('output_file', type=str)
             args = parser.parse_args()
             (mapTree,targetChromSizes, sourceChromSizes) = read_chain_file(args.chain_file)
-            crossmap_vcf_file(mapping = mapTree, infile= args.in_file, outfile = args.out_file, liftoverfile = args.chain_file, refgenome = args.ref_genome)
+            crossmap_vcf_file(mapping=mapTree, infile=args.input_file, outfile=args.output_file, liftoverfile=args.chain_file, refgenome=args.ref_genome)
         else:
             general_help()
             sys.exit(0)
