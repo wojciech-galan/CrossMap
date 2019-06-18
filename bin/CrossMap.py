@@ -652,7 +652,7 @@ def crossmap_vcf_file(mapping, infile, outfile, liftoverfile, refgenome, discard
                     fields[4] = revcomp_DNA(fields[4], True)
                     fields[3] = revcomp_DNA(fields[3], True)
 
-                if fields[3] == fields[4] or fields[3] in fields[4].split():
+                if fields[3] == fields[4] or fields[3] in fields[4].split(','):
                     print(line, file=UNMAP)
                     fail += 1
                 else:
