@@ -3,7 +3,7 @@ Forked from https://github.com/liguowang/CrossMap.
 I've fixed some problems with processing .vcf files containing multiallelic SNPs:
  - alt allele in multiallelic SNPs on reverse strand should be properly rev-complemented
  - ref allele in multiallelic SNPs should be properly rev-complemented when source strand is '+' and dest one is '-'
- - after lifting over Crossmap checks not only whether rer allele==alt allele, but also if ref allele is contained in the list oaf alt alleles (I am still talking about multiallelic SNPs)
+ - after lifting over Crossmap checks not only whether ref allele==alt allele, but also if ref allele is contained in the list of alt alleles (I am still talking about multiallelic SNPs)
 
 and added option to discard lines containing unmapped chromosomes when processing .vcf files.
 
